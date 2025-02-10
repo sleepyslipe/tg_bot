@@ -59,10 +59,15 @@ def record_stats(date, name, lesson_id, task_id, user_answer, correct_answer, ma
 # --- Обработчики команд ---
 @bot.message_handler(commands=['start'])
 def start_message(message):
+    user_name = message.from_user.first_name
+    print(user_name)
     markup = types.InlineKeyboardMarkup()
     item1 = types.InlineKeyboardButton(text="#1", callback_data='lesson_1')
     markup.add(item1)
-    bot.send_message(message.chat.id, "Привет, {0.first_name}! Выбери номер занятия по основам статистики, ОТ которого ты хотел(а) бы получить домашнее задание".format(message.from_user), reply_markup=markup)
+    bot_message = "Выбери номер занятия по основам статистики, ОТ которого ты хотел(а) бы получить домашнее задание"
+    if user_name != 'Homework on basic statistics':
+        bot_message = "Привет, {0}! ".format(user_name) + bot_message
+    bot.send_message(message.chat.id, bot_message, reply_markup=markup)
 
 # --- Обработчики callback-запросов (нажатия на кнопки) ---
 @bot.callback_query_handler(func=lambda call: True)
