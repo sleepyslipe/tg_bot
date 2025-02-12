@@ -17,8 +17,8 @@ CORRECT_ANSWERS = {
     '1': '1.3',
     '2': '0.01',
     '3': '0.1',
-    '4': '3.78',
-    '5': '1.44',
+    '4': '3.96',
+    '5': '1.41',
     '6': '1.2',
     '7': '-0.3',
     '8': '1',
@@ -125,7 +125,7 @@ def check_answer(message):
                 record_stats(date, name, lesson_id, task_number, user_answer, correct_answer, 1)
             else:
                 bot.send_message(chat_id, "Неверно. Чтобы ввести ответ еще раз, выбери задание заново.")
-                record_stats(date, name, lesson_id, task_number, user_answer, correct_answer, 1)
+                record_stats(date, name, lesson_id, task_number, user_answer, correct_answer, 0)
         else:
             bot.send_message(chat_id, "К сожалению, правильный ответ на это задание пока не задан.")
 
